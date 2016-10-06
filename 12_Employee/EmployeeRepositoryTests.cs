@@ -26,12 +26,12 @@ namespace _12_Employee
         }
 
         [TestMethod]
-        public void Create() 
+        public void Create()
         {
             EmployeeRepository repository = CreateRepository();
             repository.Clear();
             Employee simon = repository.CreateEmployee("Simon Stochholm", "Teacher");
-            Assert.AreEqual("simon Chaffee", simon.Name);
+            Assert.AreEqual("Simon Stochholm", simon.Name);
             Assert.AreEqual("Teacher", simon.Type);
             Assert.IsTrue(simon.Id != 0);
             Employee nick = repository.CreateEmployee("Nick Chaffee", "Translator");
@@ -40,18 +40,18 @@ namespace _12_Employee
         }
 
         [TestMethod]
-        public void SaveAndCount() 
+        public void SaveAndCount()
         {
             EmployeeRepository repository = CreateRepository();
             repository.Clear();
             Employee simon = repository.CreateEmployee("Simon Stochholm", "Teacher");
             repository.SaveEmployee(simon);
             Assert.AreEqual(1, repository.CountEmployees());
-            
+
         }
 
         [TestMethod]
-        public void SaveAndLoad() 
+        public void SaveAndLoad()
         {
             EmployeeRepository repository = CreateRepository();
             repository.Clear();
@@ -59,11 +59,11 @@ namespace _12_Employee
             repository.SaveEmployee(simon);
             Employee loadedsimon = repository.LoadEmployee(simon.Id);
             Assert.AreEqual(simon, loadedsimon);
-            
+
         }
 
         [TestMethod]
-        public void SaveAndLoadTwoEmployees() 
+        public void SaveAndLoadTwoEmployees()
         {
             EmployeeRepository repository = CreateRepository();
             repository.Clear();
@@ -74,11 +74,11 @@ namespace _12_Employee
             Assert.AreEqual(2, repository.CountEmployees());
             Employee loadedNick = repository.LoadEmployee(nick.Id);
             Assert.AreEqual(nick, loadedNick);
-            
+
         }
 
         [TestMethod]
-        public void FindAllEmployees() 
+        public void FindAllEmployees()
         {
             EmployeeRepository repository = CreateRepository();
             repository.Clear();
@@ -90,11 +90,11 @@ namespace _12_Employee
             List<Employee> all = repository.FindAllEmployees();
             CollectionAssert.Contains(all, simon);
             CollectionAssert.Contains(all, nick);
-            
+
         }
 
         [TestMethod]
-        public void ChangeData() 
+        public void ChangeData()
         {
             EmployeeRepository repository = CreateRepository();
             repository.Clear();
@@ -104,7 +104,7 @@ namespace _12_Employee
             repository.SaveEmployee(nick);
             nick = repository.LoadEmployee(nick.Id);
             Assert.AreEqual("Sous chef", nick.Type);
-            
+
         }
     }
 }
